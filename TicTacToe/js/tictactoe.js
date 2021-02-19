@@ -15,11 +15,11 @@ function placeXOrO(squareNumber) {
         //This condition checks who's turn it is.
         if (activePlayer === 'X') {
             //If activePlayer is equal to 'X', the x.png is placed in HTML.
-            select.style.backgroundImage = 'url("images/x.png")';
+            select.style.backgroundImage = 'url("images/x.jpg")';
             //Active player may only be 'X' or "o" so, if not 'X', it must be 'O'
         } else {
             //If Active player is equal to 'O', the o.png is placed in HTML.
-            select.style.backgroundImage = 'url("images/o.png")';
+            select.style.backgroundImage = 'url("images/o.jpg")';
         }
         //squareNumber and activePlayer are concatenated together and added to array.
         selectedSquares.push(squareNumber + activePlayer);
@@ -42,7 +42,7 @@ function placeXOrO(squareNumber) {
             disableClick();
             //This function waits 1 second before placing the image
             //and enabling click.
-            setTimeout(function () { computersTurn(); }, 1000);
+            setTimeout(function () { computersTurn(); }, 2000);
         }
         //Returning true is needed for our computersTurn() function to work.
         return true;
@@ -108,9 +108,9 @@ function checkWinConditions() {
     //and 9 squares are selected, the code executes
     else if (selectedSquares.length >= 9) {
         //This function plays the tie game sound.
-        audio('./media/tie.mp3');
+        audio('./media/tie.wav');
         //This function sets a .3 second timer before the resetGame is called.
-        setTimeout(function () { resetGame(); }, 1000);
+        setTimeout(function () { resetGame(); }, 2000);
     }
     
     //This function checks if an array includes 3 strings.
@@ -131,7 +131,7 @@ function disableClick() {
     //This makes our body unclickable.
     body.style.pointerEvents = 'none';
     //This makes our body clickable again after 1 second.
-    setTimeout(function() {body.style.pointerEvents = 'auto'}, 1000);
+    setTimeout(function() {body.style.pointerEvents = 'auto'}, 2000);
 }
 
 //This function takes a string parameter of the path you set earlier for
@@ -177,7 +177,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
         //This method set the width of our line
         c.lineWidth = 10;
         //This method sets the color of our line
-        c.strokeStyle = 'rgba(70, 255, 33, .8)';
+        c.strokeStyle = 'rgba(255, 255, 0, .7)';
         //THis method draws everything we laid out above.
         c.stroke();
         //This condition checks if we've reached the endpoint.
@@ -210,12 +210,15 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
     //This line disallows clicking while the win sound is playingdisableClick();
     disableClick();
     //This line plays the win sounds.
-    audio('./media/winGame.mp3');
+    audio('./media/winGame.wav');
     //This line calls our main animation loop.
     animateLineDrawing();
     //This line waits 1 second.
     //Then, clears canvas, resets game, and allows clicking again.
-    setTimeout(function () { clear(); resetGame(); }, 1000);
+    setTimeout(function () { clear(); resetGame(); }, 2000);
+
+
+}
 
     //This function resets the game in a tie or a win.
     function resetGame() {
@@ -229,4 +232,3 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
         //Thiss resets our array so it is empty and we can start over.
         selectedSquares = [];
     }
-}
